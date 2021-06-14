@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>BrewBox | The #1 Cocktailmaker</title>
+    <meta name="description" content="BrewBox is an amazing cocktail maker that provides quick and easy cocktails.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/screen.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            toggleNav();
+        })
+
+        function toggleNav() {
+            let toggleTrigger = document.querySelectorAll(".js-toggle-nav");
+            for (let i = 0; i < toggleTrigger.length; i++) {
+                toggleTrigger[i].addEventListener("click", function () {
+                    console.log("ei");
+                    document.querySelector("body").classList.toggle("has-mobile-nav");
+                })
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"
+        integrity="sha384-LzhRnpGmQP+lOvWruF/lgkcqD+WDVt9fU3H4BWmwP5u5LTmkUGafMcpZKNObVMLU"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="c-page">
+        <header class="o-row o-row--md o-row--header">
+            <div class="o-container">
+                <div class="c-header">
+                    <div class="c-header__logo">
+                        <h1 class="c-logo">
+                            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 256 256" height="32" width="32">
+                                <defs>
+                                    <style>
+                                        .cls-1 {
+                                            fill: #496bb3;
+                                        }
+
+                                        .cls-2 {
+                                            fill: #253d8a;
+                                        }
+                                    </style>
+                                </defs>
+                                <path class="cls-1"
+                                    d="M114.65,210.76V49.66H162q21.22,0,33.91,10.14t12.69,26.88A38.53,38.53,0,0,1,201,110.19a40.49,40.49,0,0,1-20.75,14.45v.42q16.42,1.88,26.26,12.43t9.83,26.78q0,20.8-14.93,33.65t-38.22,12.84Zm20.8-142.9V118.3h18.93q15.08,0,23.66-7.33t8.58-20.33q0-22.78-30.37-22.78Zm0,68.54v56.16h25q16.34,0,25.22-7.54t8.9-21q0-27.66-37.55-27.66Z" />
+                                <path class="cls-1"
+                                    d="M86.54,210.76q-23.29,0-38.22-12.84T33.39,164.27q0-16.22,9.83-26.78t26.26-12.43v-.41a40.44,40.44,0,0,1-20.75-14.46,38.5,38.5,0,0,1-7.54-23.5q0-16.75,12.69-26.89T87.79,49.66h47.32v161.1Zm6.24-74.36q-37.54,0-37.55,27.67,0,13.41,8.9,21t25.22,7.54h25V136.4Zm.73-68.54q-30.37,0-30.37,22.78,0,13,8.58,20.33t23.66,7.33h18.93V67.86Z" />
+                                <rect class="cls-2" x="114.31" y="49.66" width="21.28" height="161.1" />
+                            </svg>
+                            BrewBox
+                        </h1>
+                    </div>
+                    <!-- <div class="c-header__nav c-header__nav--main">
+                        <nav class="c-nav">
+                            <ul class="o-list c-nav__list">
+                                <li class="c-nav__item is-selected"><a href="#!" class="c-nav__link">Dashboard</a></li>
+                                <li class="c-nav__item"><a href="#!" class="c-nav__link">Reinigen</a></li>
+                                <li class="c-nav__item"><a href="#!" class="c-nav__link">Instellingen</a></li>
+                            </ul>
+                        </nav>
+                    </div> -->
+                    <div class="c-header__nav">
+                        <nav class="c-nav c-nav--meta">
+                            <ul class="o-list c-nav__list">
+                                <li class="c-nav__item"><a href="/"
+                                        class="c-nav__link c-nav__link--meta">Dashboard</a>
+                                </li>
+                                <li class="c-nav__item is-selected"><a href="#!"
+                                        class="c-nav__link c-nav__link--meta">Reinigen</a></li>
+                                <li class="c-nav__item"><a href="instellingen.html"
+                                        class="c-nav__link c-nav__link--meta">Instellingen</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="c-header__mobile-nav-trigger">
+                        <button class="o-button-reset c-nav-trigger js-toggle-nav">
+                            <svg class="c-nav-trigger__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="o-row o-row--lg u-pt-clear">
+            <div class="o-container">
+                <!-- <div class="o-section o-section--lg">
+                    <figure class="c-figure">
+                        <img src="img/jpg/intro-img.jpg"
+                            alt="Dr. James Hamrick & Sarika Vora in their weekly team stand-up">
+                        <figcaption class="c-figure__caption c-figure__caption--absolute">Dr. James Hamrick & Sarika
+                            Vora in their weekly team stand-up</figcaption>
+                    </figure>
+                </div> -->
+                <div class="o-section o-section--lg">
+                    <div class="o-layout o-layout--gutter-lg">
+                        <div class="o-layout__item u-1-of-1">
+                            <div class="u-max-width-sm">
+                                <h1 class="c-lead c-lead--xxl u-color-primary-base">
+                                    Reinigen
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o-container">
+                        <p>Om de levensduur van de BrewBox te vergroten dien je de pompen te spoelen.<br>
+                        Dit kan gedaan worden door op de start knop hieronder te klikken en de stappen te volgen.</p>
+                        <div class="o-layout o-layout--gutter o-layout--justify-space-around">
+                            <button class="o-button" onclick="startCleaning()">Start reinigingsproces</button>
+                        </div>
+                        <div class="step1">
+                            <h3>Stap 1:</h3>
+                            Haal de buizen uit de drank reservoir en steek deze in een water reservoir.<br>
+                            Zet zeker ook een reservoir onder de uitgang.<br>
+                            <button class="o-button" onclick="nextStep()">Volgende stap</button>
+                        </div>
+                        <div class="step2">
+                            <h3>Stap 2:</h3>
+                            Haal nu de buis uit het water reservoir en laat deze uit een reservoir.<br>
+                            In deze stap wordt het overige water weggespoeld uit de buizen. <br>
+                            <button class="o-button" onclick="nextStep()">Volgende stap</button>
+                        </div>
+                        
+                        <div class="o-progressbar o-button--hidden">
+                            <div class="js-progressbar"></div>
+                          </div>
+                        <!-- Code toevoegen voor temp sensors -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <aside class="c-mobile-nav">
+        <div class="c-mobile-nav__bg"></div>
+        <div class="c-mobile-nav__body">
+            <div class="c-mobile-nav__header">
+                <p class="c-logo">
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"
+                        height="32" width="32">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #496bb3;
+                                }
+
+                                .cls-2 {
+                                    fill: #253d8a;
+                                }
+                            </style>
+                        </defs>
+                        <path class="cls-1"
+                            d="M114.65,210.76V49.66H162q21.22,0,33.91,10.14t12.69,26.88A38.53,38.53,0,0,1,201,110.19a40.49,40.49,0,0,1-20.75,14.45v.42q16.42,1.88,26.26,12.43t9.83,26.78q0,20.8-14.93,33.65t-38.22,12.84Zm20.8-142.9V118.3h18.93q15.08,0,23.66-7.33t8.58-20.33q0-22.78-30.37-22.78Zm0,68.54v56.16h25q16.34,0,25.22-7.54t8.9-21q0-27.66-37.55-27.66Z" />
+                        <path class="cls-1"
+                            d="M86.54,210.76q-23.29,0-38.22-12.84T33.39,164.27q0-16.22,9.83-26.78t26.26-12.43v-.41a40.44,40.44,0,0,1-20.75-14.46,38.5,38.5,0,0,1-7.54-23.5q0-16.75,12.69-26.89T87.79,49.66h47.32v161.1Zm6.24-74.36q-37.54,0-37.55,27.67,0,13.41,8.9,21t25.22,7.54h25V136.4Zm.73-68.54q-30.37,0-30.37,22.78,0,13,8.58,20.33t23.66,7.33h18.93V67.86Z" />
+                        <rect class="cls-2" x="114.31" y="49.66" width="21.28" height="161.1" />
+                    </svg>
+                    BrewBox
+                </p>
+                <button class="o-button-reset c-nav-trigger js-toggle-nav">
+                    <svg class="c-nav-trigger__svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="c-mobile-nav__nav c-mobile-nav__nav--main">
+                <nav class="c-nav">
+                    <ul class="o-list c-nav__list">
+                        <li class="c-nav__item is-selected"><a href="#!" class="c-nav__link ">Dashboard</a></li>
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link">Company</a></li>
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link">Publications</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- <div class="c-mobile-nav__nav">
+                <nav class="c-nav c-nav--meta">
+                    <ul class="o-list c-nav__list">
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link c-nav__link--meta">Careers</a></li>
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link c-nav__link--meta">Blog</a></li>
+                        <li class="c-nav__item"><a href="#!" class="c-nav__link c-nav__link--meta">About</a></li>
+                    </ul>
+                </nav>
+            </div> -->
+        </div>
+    </aside>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="/js/dataHandler.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
